@@ -50,6 +50,7 @@ module Sorcery
                   response = @access_token.get(@user_info_path)
                   user_hash[:user_info] = JSON.parse(response)
                   user_hash[:uid] = user_hash[:user_info]['id']
+                  user_hash[:user_info]["token"] = @access_token.token
                   user_hash
                 end
                 
