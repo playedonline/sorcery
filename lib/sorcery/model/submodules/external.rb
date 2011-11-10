@@ -40,9 +40,9 @@ module Sorcery
         module ClassMethods
           # takes a provider and uid and finds a user by them.
           def load_from_provider(provider,uid)
-            config = sorcery_config
+             config = sorcery_config
             authentication = config.authentications_class.find_by_provider_and_uid(provider, uid)
-            user = find(authentication.send(config.authentications_user_id_attribute_name)) if authentication
+            user = from_cache(:id => authentication.send(config.authentications_user_id_attribute_name)) if authentication
           end
         end
         
