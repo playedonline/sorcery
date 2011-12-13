@@ -1,7 +1,7 @@
 PATH
   remote: ../
   specs:
-    sorcery (0.7.4)
+    sorcery (0.7.5)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
       oauth (~> 0.4.4)
@@ -43,7 +43,7 @@ GEM
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
-    columnize (0.3.4)
+    columnize (0.3.5)
     diff-lcs (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -61,12 +61,12 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.3)
-    multipart-post (1.1.3)
+    multipart-post (1.1.4)
     oauth (0.4.5)
     oauth2 (0.4.1)
       faraday (~> 0.6.1)
       multi_json (>= 0.0.5)
-    polyglot (0.3.2)
+    polyglot (0.3.3)
     rack (1.2.4)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -112,7 +112,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.30)
+    tzinfo (0.3.31)
 
 PLATFORMS
   ruby
