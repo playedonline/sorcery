@@ -91,7 +91,13 @@ module Sorcery
                 #using @current_user so it will use the generated guest user instead of creating a new one
                 @current_user.send(:"#{k}=", v)
               end
-              @current_user.save(:validate => false)
+              #@current_user.save!
+              if @current_user.password.blank?
+                 @current_user.password = Digest::MD5.hexdigest(Time.now.nsec.to_s + rand.to_s + Rails.application.config.secret_token)
+                # autogenerate a password so the validation will pass. This is needed for facebook users who don't really have a password.
+                # The original code skipped validations which is not a good idea.
+              end
+              @current_user.save_to_cache(:flush_immediately=>true)
               user_class.sorcery_config.authentications_class.create!({config.authentications_user_id_attribute_name => @current_user.id, config.provider_attribute_name => provider, config.provider_uid_attribute_name => @user_hash[:uid]})
               @current_user.send("after_created_from_#{provider}") if @current_user.respond_to?("after_created_from_#{provider}")
             end
