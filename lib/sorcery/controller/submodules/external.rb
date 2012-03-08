@@ -36,7 +36,7 @@ module Sorcery
             if @provider.has_callback?
               redirect_to @provider.login_url(params,session)
             else
-              #@provider.login(args)
+              @provider.login(args)
             end
           end
           

@@ -35,7 +35,8 @@ module Sorcery
                               :user_info_path,
                               :scope,
                               :user_info_mapping,
-                              :display
+                              :display,
+                              :state
                 attr_reader   :access_token
 
                 include Protocols::Oauth2
@@ -46,6 +47,7 @@ module Sorcery
                   @scope          = "email,offline_access"
                   @user_info_mapping = {}
                   @display        = "page"
+                  @state          = ""
                 end
                 
                 def get_user_hash
@@ -64,6 +66,7 @@ module Sorcery
                 # calculates and returns the url to which the user should be redirected,
                 # to get authenticated at the external provider's site.
                 def login_url(params,session)
+                  @state = params[:state] # added by ehud
                   self.authorize_url
                 end
                 
