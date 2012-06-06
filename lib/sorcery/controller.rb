@@ -108,7 +108,9 @@ module Sorcery
       end
 
       def login_from_session
-        @current_user = (user_class.from_cache(session[:auth_token]) if session[:auth_token]) || false
+        # changed to support cachify
+        includes_for_action = Cachify.get_includes_for_action(User, controller_name, action_name)
+        @current_user = (user_class.from_cache(session[:auth_token], :includes => includes_for_action) if session[:auth_token]) || false
       end
 
       def after_login!(user, credentials)
