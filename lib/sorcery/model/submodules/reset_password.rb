@@ -93,7 +93,7 @@ module Sorcery
             self.send(:"#{config.reset_password_token_expires_at_attribute_name}=", Time.now.in_time_zone + config.reset_password_expiration_period) if config.reset_password_expiration_period
             self.send(:"#{config.reset_password_email_sent_at_attribute_name}=", Time.now.in_time_zone)
             self.class.transaction do
-              self.save!(:validate => false)
+              self.save_to_cache
               generic_send_email(:reset_password_email_method_name, :reset_password_mailer)
             end
           end
