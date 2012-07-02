@@ -45,8 +45,8 @@ module Sorcery
             @provider = Config.send(provider)
             @provider.process_callback(params,session)
             @user_hash = @provider.get_user_hash
-            user = User.find_by_fb_id(@user_hash[:uid]) if (provider == 'facebook')
-            if user ||= user_class.load_from_provider(provider,@user_hash[:uid])
+            #user = User.find_by_fb_id(@user_hash[:uid]) if (provider == 'facebook')
+            if user = user_class.load_from_provider(provider,@user_hash[:uid])
               user.send("after_login_from_#{provider}",@user_hash) if user.respond_to?("after_login_from_#{provider}")
               reset_session
               auto_login(user)
