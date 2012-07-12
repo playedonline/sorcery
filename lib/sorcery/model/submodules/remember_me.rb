@@ -49,17 +49,17 @@ module Sorcery
           # You shouldn't really use this one yourself - it's called by the controller's 'remember_me!' method.
           def remember_me!
             config = sorcery_config
-            self.send(:"#{config.remember_me_token_attribute_name}=", Digest::MD5.hexdigest(self.id.to_s + Rails.application.config.secret_token).slice(0,15)            )
+            self.send(:"#{config.remember_me_token_attribute_name}=", Digest::MD5.hexdigest(self.id.to_s + Rails.application.config.secret_token).slice(0,15))
             self.send(:"#{config.remember_me_token_expires_at_attribute_name}=", Time.now.in_time_zone + config.remember_me_for)
             self.save!(:validate => false)
           end
           
           # You shouldn't really use this one yourself - it's called by the controller's 'forget_me!' method.
           def forget_me!
-            config = sorcery_config
-            self.send(:"#{config.remember_me_token_attribute_name}=", nil)
-            self.send(:"#{config.remember_me_token_expires_at_attribute_name}=", nil)
-            self.save!(:validate => false)
+            #config = sorcery_config
+            #self.send(:"#{config.remember_me_token_attribute_name}=", nil)
+            #self.send(:"#{config.remember_me_token_expires_at_attribute_name}=", nil)
+            #self.save!(:validate => false)
           end
         end
       end
