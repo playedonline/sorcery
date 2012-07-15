@@ -51,7 +51,7 @@ module Sorcery
             config = sorcery_config
             self.send(:"#{config.remember_me_token_attribute_name}=", Digest::MD5.hexdigest(self.auth_token.to_s + Rails.application.config.secret_token).slice(0,15))
             self.send(:"#{config.remember_me_token_expires_at_attribute_name}=", Time.now.in_time_zone + config.remember_me_for)
-            self.save!(:validate => false)
+            #self.save!(:validate => false)
           end
           
           # You shouldn't really use this one yourself - it's called by the controller's 'forget_me!' method.
